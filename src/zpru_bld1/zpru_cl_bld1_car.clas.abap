@@ -1,6 +1,5 @@
 CLASS zpru_cl_bld1_car DEFINITION
-  PUBLIC
-  FINAL
+  PUBLIC FINAL
   CREATE PRIVATE
   GLOBAL FRIENDS zpru_cl_bld1_car_builder.
 
@@ -13,6 +12,27 @@ CLASS zpru_cl_bld1_car DEFINITION
     TYPES tv_multimedia        TYPE c LENGTH 40.
     TYPES tv_assistance_system TYPE c LENGTH 40.
 
+    METHODS get_id
+      RETURNING VALUE(rv_id) TYPE tv_id.
+
+    METHODS get_brand
+      RETURNING VALUE(rv_brand) TYPE tv_brand.
+
+    METHODS get_model
+      RETURNING VALUE(rv_model) TYPE tv_model.
+
+    METHODS get_price
+      RETURNING VALUE(rv_price) TYPE tv_price.
+
+    METHODS get_equipment
+      RETURNING VALUE(rv_equipment) TYPE tv_equipment.
+
+    METHODS get_multimedia
+      RETURNING VALUE(rv_multimedia) TYPE tv_multimedia.
+
+    METHODS get_assistance_system
+      RETURNING VALUE(rv_assistance_system) TYPE tv_assistance_system.
+
   PROTECTED SECTION.
     DATA mv_id                TYPE tv_id.
     DATA mv_brand             TYPE tv_brand.
@@ -21,6 +41,7 @@ CLASS zpru_cl_bld1_car DEFINITION
     DATA mv_equipment         TYPE tv_equipment.
     DATA mv_multimedia        TYPE tv_multimedia.
     DATA mv_assistance_system TYPE tv_assistance_system.
+
   PRIVATE SECTION.
     METHODS constructor
       IMPORTING Iv_id                TYPE tv_id
@@ -33,6 +54,7 @@ CLASS zpru_cl_bld1_car DEFINITION
 
 ENDCLASS.
 
+
 CLASS zpru_cl_bld1_car IMPLEMENTATION.
   METHOD constructor.
     mv_id                = iv_id.
@@ -44,4 +66,31 @@ CLASS zpru_cl_bld1_car IMPLEMENTATION.
     mv_assistance_system = iv_assistance_system.
   ENDMETHOD.
 
+  METHOD get_assistance_system.
+    rv_assistance_system = mv_assistance_system.
+  ENDMETHOD.
+
+  METHOD get_brand.
+    rv_brand = mv_brand.
+  ENDMETHOD.
+
+  METHOD get_equipment.
+    rv_equipment = mv_equipment.
+  ENDMETHOD.
+
+  METHOD get_id.
+    rv_id = mv_id.
+  ENDMETHOD.
+
+  METHOD get_model.
+    rv_model = mv_model.
+  ENDMETHOD.
+
+  METHOD get_multimedia.
+    rv_multimedia = mv_multimedia.
+  ENDMETHOD.
+
+  METHOD get_price.
+    rv_price = mv_price.
+  ENDMETHOD.
 ENDCLASS.

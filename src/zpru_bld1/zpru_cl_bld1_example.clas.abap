@@ -39,7 +39,19 @@ CLASS zpru_cl_bld1_example IMPLEMENTATION.
     " construct final object
     DATA(lo_bmw_5_sedan) = lo_bmw_builder->build( ).
 
-    out->write( EXPORTING data = lo_mercedes_c_180 name = 'Console app is finished' ).
+    data(lv_mercedes_string) = |{ lo_mercedes_c_180->get_id( ) }; { lo_mercedes_c_180->get_brand( ) }; | &&
+                               |{ lo_mercedes_c_180->get_model( ) }; { lo_mercedes_c_180->get_price( ) }; | &&
+                               |{ lo_mercedes_c_180->get_multimedia( ) }; { lo_mercedes_c_180->get_equipment( ) }; | &&
+                               |{ lo_mercedes_c_180->get_assistance_system( ) }; { lo_mercedes_c_180->get_assistance_system( ) }|.
+
+    data(lv_bmw_string) = |{ lo_bmw_5_sedan->get_id( ) }; { lo_bmw_5_sedan->get_brand( ) }; | &&
+                          |{ lo_bmw_5_sedan->get_model( ) }; { lo_bmw_5_sedan->get_price( ) }; | &&
+                          |{ lo_bmw_5_sedan->get_multimedia( ) }; { lo_bmw_5_sedan->get_equipment( ) }; | &&
+                          |{ lo_bmw_5_sedan->get_assistance_system( ) }; { lo_bmw_5_sedan->get_assistance_system( ) }|.
+
+
+    out->write( EXPORTING data = lv_mercedes_string name = 'Mercedes C 180 data' ).
+    out->write( EXPORTING data = lv_bmw_string name = 'BMW 5 Series Sedan 180 data' ).
   ENDMETHOD.
 
 ENDCLASS.
