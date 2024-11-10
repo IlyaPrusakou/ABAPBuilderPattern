@@ -4,59 +4,29 @@ CLASS zpru_cl_bld3_car DEFINITION
   GLOBAL FRIENDS zpru_cl_bld3_car_builder.
 
   PUBLIC SECTION.
-    TYPES tv_id                TYPE c LENGTH 10.
-    TYPES tv_brand             TYPE c LENGTH 40.
-    TYPES tv_model             TYPE c LENGTH 40.
-    TYPES tv_price             TYPE p LENGTH 8 DECIMALS 0.
-    TYPES tv_equipment         TYPE c LENGTH 40.
-    TYPES tv_multimedia        TYPE c LENGTH 40.
-    TYPES tv_assistance_system TYPE c LENGTH 40.
-    TYPES tv_color             TYPE c LENGTH 40.
 
-    METHODS get_id
-      RETURNING VALUE(rv_id) TYPE tv_id.
-
-    METHODS get_brand
-      RETURNING VALUE(rv_brand) TYPE tv_brand.
-
-    METHODS get_model
-      RETURNING VALUE(rv_model) TYPE tv_model.
-
-    METHODS get_price
-      RETURNING VALUE(rv_price) TYPE tv_price.
-
-    METHODS get_equipment
-      RETURNING VALUE(rv_equipment) TYPE tv_equipment.
-
-    METHODS get_multimedia
-      RETURNING VALUE(rv_multimedia) TYPE tv_multimedia.
-
-    METHODS get_assistance_system
-      RETURNING VALUE(rv_assistance_system) TYPE tv_assistance_system.
-
-    METHODS get_color
-      RETURNING VALUE(rv_color) TYPE tv_color.
+    INTERFACES zpru_if_bld3_product_car.
 
   PROTECTED SECTION.
-    DATA mv_id                TYPE tv_id.
-    DATA mv_brand             TYPE tv_brand.
-    DATA mv_model             TYPE tv_model.
-    DATA mv_price             TYPE tv_price.
-    DATA mv_equipment         TYPE tv_equipment.
-    DATA mv_multimedia        TYPE tv_multimedia.
-    DATA mv_assistance_system TYPE tv_assistance_system.
-    DATA mv_color             TYPE tv_color.
+    DATA mv_id                TYPE zpru_if_bld3_product~tv_id.
+    DATA mv_brand             TYPE zpru_if_bld3_product~tv_brand.
+    DATA mv_model             TYPE zpru_if_bld3_product~tv_model.
+    DATA mv_price             TYPE zpru_if_bld3_product~tv_price.
+    DATA mv_equipment         TYPE zpru_if_bld3_product~tv_equipment.
+    DATA mv_multimedia        TYPE zpru_if_bld3_product~tv_multimedia.
+    DATA mv_assistance_system TYPE zpru_if_bld3_product~tv_assistance_system.
+    DATA mv_car_color         TYPE zpru_if_bld3_product_car~tv_car_color.
 
   PRIVATE SECTION.
     METHODS constructor
-      IMPORTING Iv_id                TYPE tv_id
-                Iv_brand             TYPE tv_brand
-                Iv_model             TYPE tv_model
-                iv_price             TYPE tv_price
-                iv_equipment         TYPE tv_equipment
-                iv_multimedia        TYPE tv_multimedia
-                iv_assistance_system TYPE tv_assistance_system
-                iv_color             TYPE tv_color.
+      IMPORTING iv_id                TYPE zpru_if_bld3_product~tv_id
+                iv_brand             TYPE zpru_if_bld3_product~tv_brand
+                iv_model             TYPE zpru_if_bld3_product~tv_model
+                iv_price             TYPE zpru_if_bld3_product~tv_price
+                iv_equipment         TYPE zpru_if_bld3_product~tv_equipment
+                iv_multimedia        TYPE zpru_if_bld3_product~tv_multimedia
+                iv_assistance_system TYPE zpru_if_bld3_product~tv_assistance_system
+                iv_car_color         TYPE zpru_if_bld3_product_car~tv_car_color.
 
 ENDCLASS.
 
@@ -70,38 +40,39 @@ CLASS zpru_cl_bld3_car IMPLEMENTATION.
     mv_equipment         = iv_equipment.
     mv_multimedia        = iv_multimedia.
     mv_assistance_system = iv_assistance_system.
-    mv_color             = iv_color.
+    mv_car_color         = iv_car_color.
   ENDMETHOD.
 
-  METHOD get_assistance_system.
+  METHOD zpru_if_bld3_product~get_assistance_system.
     rv_assistance_system = mv_assistance_system.
   ENDMETHOD.
 
-  METHOD get_brand.
+  METHOD zpru_if_bld3_product~get_brand.
     rv_brand = mv_brand.
   ENDMETHOD.
 
-  METHOD get_equipment.
+  METHOD zpru_if_bld3_product~get_equipment.
     rv_equipment = mv_equipment.
   ENDMETHOD.
 
-  METHOD get_id.
+  METHOD zpru_if_bld3_product~get_id.
     rv_id = mv_id.
   ENDMETHOD.
 
-  METHOD get_model.
+  METHOD zpru_if_bld3_product~get_model.
     rv_model = mv_model.
   ENDMETHOD.
 
-  METHOD get_multimedia.
+  METHOD zpru_if_bld3_product~get_multimedia.
     rv_multimedia = mv_multimedia.
   ENDMETHOD.
 
-  METHOD get_price.
+  METHOD zpru_if_bld3_product~get_price.
     rv_price = mv_price.
   ENDMETHOD.
 
-  METHOD get_color.
-    rv_color = mv_color.
+  METHOD zpru_if_bld3_product_car~get_car_color.
+    rv_car_color = mv_car_color.
   ENDMETHOD.
+
 ENDCLASS.
