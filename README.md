@@ -46,8 +46,8 @@ Regarding of Product role I would like to underline destinction of at least two 
 
    ```mermaid
     graph TD;
-    A[Carclass]-->B[BMWinstance];
-    A[Carclass]-->C[Porscheinstance];
+    A[Car class]-->B[BMW instance];
+    A[Car class]-->C[Porsche instance];
    ```
 
 As you can see there are two instances of class Car, but they are distincted with qualified field model, which can be read-only field, set inside constructor.
