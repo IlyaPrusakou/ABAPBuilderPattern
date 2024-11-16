@@ -13,9 +13,7 @@ A logic for creation of Product class is handled to Builder class.
 
 1. Simple Builder(Builder class --> Product class)
 2. Builder with Director(Director class --> Builder class --> Product class)
-3. Builder with Direct and Interfaces(Director class --> Builder A Interface --> Product A Interface
-                                      Director class --> Builder B Interface --> PRoduct B Interface
-                                      Director class --> ... )
+3. Builder with Direct and Interfaces(Director class --> Builder A Interface --> Product A Interface; Director class --> Builder B Interface --> PRoduct B Interface; Director class --> ... )
 
 ## Semantical structure of pattern
 
