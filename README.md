@@ -44,6 +44,12 @@ Regarding of Product role I would like to underline destinction of at least two 
    | Fields  | price = '100 000'  | price = '100 000' |
    | Fields  | engine = 'V8'  | engine = 'V8' |
 
+   ```mermaid
+    graph TD;
+    A[Carclass]-->B[BMWinstance];
+    A[Carclass]-->C[Porscheinstance];
+   ```
+
 As you can see there are two instances of class Car, but they are distincted with qualified field model, which can be read-only field, set inside constructor.
 
 ### 2. Type specialization
@@ -54,9 +60,15 @@ As you can see there are two instances of class Car, but they are distincted wit
       | Class type and components  | First Instance | Second Instance |
    | -------------------------- | ------------- | ------------- |
    | Class  | BMW  |  Porsche |
-   | Qualifield Atributes  | NO  | NO  |
+   | Qualifield Atributes  | NO MATTER  | NO MATTER  |
    | Fields  | price = '100 000'  | price = '100 000' |
    | Fields  | engine = 'V8'  | engine = 'V8' |
+
+   ```mermaid
+    graph TD;
+    A[BMW class]-->B[BMW instance];
+    C[Porsche class]-->D[Porsche instance];
+   ```
 
           
 ## Simple Builder
