@@ -121,8 +121,12 @@ Schema 3.
 
 ### Builder With Director and Interfaces
 
-1. Create common interface for all Product class(Car class and Car Schema class).
-2. Create product specialized interfaces for Car entity and Car Schema entity.
-3. Create common interface for Builder classes(Car Builder class and Car Schema class).
-4. Create Builder specialized interfaces for Car Builder entity and Car Schema Builder entity.
+1. Basically, 1 - 6 points for Simple Builder are true.
+2. Create common interface for all Product class(Car class and Car Schema class).
+3. Create product specialized interfaces for Car entity and Car Schema entity.
+4. Create common interface for Builder classes(Car Builder class and Car Schema class).
+5. Create Builder specialized interfaces for Car Builder entity and Car Schema Builder entity.
+6. Rework friendship inside Car and Car Schema classes, make it point onto Builder common interface.
+7. use type of product specialized interface as returning type of Builder's build methods.
+8. use type of builder specialized interface as importing type of Director's build methods. 
     
