@@ -117,7 +117,12 @@ Schema 3.
 1. 1 - 6 points for Simple Builder are true
 2. Director class has specialized methods, e.g. buildMercedes, buildPorcshe and etc.
 3. Director's specialized methods has importing parameter of type of Builder class(Builder Interface) to inject Builder instance
-4. Director's methods provide distinguish setup of Builder instance.
+4. Director's methods provide distinguish setup for different Builders' instances.
 
+### Builder With Director and Interfaces
 
-
+1. Create common interface for all Product class(Car class and Car Schema class).
+2. Create product specialized interfaces for Car entity and Car Schema entity.
+3. Create common interface for Builder classes(Car Builder class and Car Schema class).
+4. Create Builder specialized interfaces for Car Builder entity and Car Schema Builder entity.
+    
