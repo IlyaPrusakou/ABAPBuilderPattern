@@ -36,7 +36,11 @@ A logic for creation of Product class is handled to Builder class.
 
 ## Semantical structure of pattern
 
-All classes and interfaces can play roles of Director, Builder and Product.
+All classes and interfaces can play roles of: 
+1. Director 
+2. Builder 
+3. Product.
+
 Regarding of Product role I would like to underline destinction of at least two type of specialization:
 
 ### 1. Factual specialization.
@@ -75,7 +79,12 @@ As you can see there are two instances of class Car, but they are distincted wit
     A[BMW class]-->B[BMW instance];
     C[Porsche class]-->D[Porsche instance];
    ```
+Regarding Builder role I would lucidate that method Build. The method create an instance of product and set all data, preserved in Builder instance, into product instance.
+We can set up builder once with set of data. All the data will be plugged in product instance. Each invocation of Build creates new instnace of product with data from Builder.
+The builder is a source of data, and product is recipient. Moreover, there is space for implementation of specialization of product. For instance, Builder can have multiple build methods(buildProductA, buildProductB and etc.), returning different instance setup or different class types.  
 
+Director role is just next layer of separation of procees of creation. When Builder is a distinct layer for creation of Products, but Director is a layer to create or setup of Builders.
+And there specialization arise again. For example, we can make multiple methods for setup of different Builders. 
           
 ## Simple Builder
 
@@ -91,4 +100,24 @@ Schema 2.
 
 Schema 3.
 ![Builder 3 UML schema](https://github.com/user-attachments/assets/a1edd3a8-01ae-4281-8b2c-1f8d1aa4d05f)
+
+## Implementation Details
+
+### Simple Builders
+
+1. Car class has private constructor an establish firendship with Car Builder class.
+2. Car class has only getters methods to receive data from.
+3. Car class has constructor taking all data to setup it as class attributes.
+4. Builder contains only setter methods to setup builder data as class attributes.
+5. Builder has build method, returning instance of Car class.
+6. Builder's build method passes all data from Builder instance into constructor of Car class.
+
+### Builder with Director
+
+1. 1 - 6 points for Simple Builder are true
+2. Director class has specialized methods, e.g. buildMercedes, buildPorcshe and etc.
+3. Director's specialized methods has importing parameter of type of Builder class(Builder Interface) to inject Builder instance
+4. Director's methods provide distinguish setup of Builder instance.
+
+
 
