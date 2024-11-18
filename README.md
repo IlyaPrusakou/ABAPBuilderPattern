@@ -112,12 +112,40 @@ Schema 3.
 5. Builder has build method, returning instance of Car class.
 6. Builder's build method passes all data from Builder instance into constructor of Car class.
 
+### Simple Builders Usage pattern
+
+```
+    " Create mercedes builder
+    " pass mandatory fields
+    DATA(lo_mercedes_builder) = NEW zpru_cl_bld1_car_builder( iv_id    = '1'
+                                                              iv_brand = 'MERCEDES'
+                                                              iv_model = 'C 180 T-Model' ).
+    " pass optional fields into builder
+    lo_mercedes_builder->set_price('100000' )->set_multimedia( 'AVANTGARDE' )->set_equipment( 'Memory Package' )->set_assistance_system('Driving Assistance Package Plus' ).
+
+    " construct final object of mercedes
+    DATA(lo_mercedes_c_180) = lo_mercedes_builder->build( ).
+```
+
 ### Builder with Director
 
 1. 1 - 6 points for Simple Builder are true
 2. Director class has specialized methods, e.g. buildMercedes, buildPorcshe and etc.
 3. Director's specialized methods has importing parameter of type of Builder class(Builder Interface) to inject Builder instance
 4. Director's methods provide distinguish setup for different Builders' instances.
+
+### Builder with Director Usage pattern
+
+```
+    DATA(lo_director) = NEW zpru_cl_bld2_car_director( ).
+    DATA(lo_mercedes_builder) = NEW zpru_cl_bld2_car_builder( iv_brand = 'MERCEDES'
+                                                              iv_model = 'C 180 T-Model' ).
+    lo_director->build_mercedes( io_builder = lo_mercedes_builder ).
+
+    lo_mercedes_builder->set_color( 'BLUE' ).
+    lo_mercedes_builder->set_id( '1' ).
+    DATA(lo_mercedes_c180_1_blue) = lo_mercedes_builder->build( ).
+```
 
 ### Builder With Director and Interfaces
 
@@ -128,5 +156,25 @@ Schema 3.
 5. Create Builder specialized interfaces for Car Builder entity and Car Schema Builder entity.
 6. Rework friendship inside Car and Car Schema classes, make it point onto Builder common interface.
 7. use type of product specialized interface as returning type of Builder's build methods.
-8. use type of builder specialized interface as importing type of Director's build methods. 
-    
+8. use type of builder specialized interface as importing type of Director's build methods.
+
+```
+    DATA lo_mercedes_builder_car TYPE REF TO zpru_if_bld3_builder_car.
+    DATA lo_mercedes_builder_schema TYPE REF TO zpru_if_bld3_builder_schema.
+    DATA lo_director TYPE REF TO zpru_cl_bld3_car_director.
+
+    lo_director = NEW zpru_cl_bld3_car_director( ).
+    lo_mercedes_builder_car = NEW zpru_cl_bld3_car_builder( iv_brand = 'MERCEDES'
+                                                            iv_model = 'C 180 T-Model' ).
+    lo_director->build_mercedes_car( io_builder = lo_mercedes_builder_car ).
+
+    lo_mercedes_builder_car->zpru_if_bld3_builder~set_id( '1' ).
+    DATA(lo_mercedes_c180_car) = lo_mercedes_builder_car->build( ).
+
+    lo_mercedes_builder_schema = NEW zpru_cl_bld3_schema_builder( iv_brand = 'MERCEDES'
+                                                                  iv_model = 'C 180 T-Model' ).
+
+    lo_director->build_mercedes_schema( io_builder = lo_mercedes_builder_schema ).
+    lo_mercedes_builder_schema->zpru_if_bld3_builder~set_id( '2' ).
+    DATA(lo_mercedes_c180_schema) = lo_mercedes_builder_schema->build( ).
+```
