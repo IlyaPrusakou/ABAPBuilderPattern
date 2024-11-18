@@ -12,20 +12,26 @@ A logic for creation of Product class is handled to Builder class.
 ## Types of the Builder pattern
 
 ### 1. Simple Builder:
+   
+   ```mermaid
+    graph LR;
+    B[Builder class]-->C[Product class];
    ```
-   Builder class --> Product class
-   ```
-
+   
 ### 2. Builder with Director
-   ```
-   Director class --> Builder class --> Product class
+
+   ```mermaid
+    graph LR;
+    A[Director class]-->B[Builder Class]-->C[Product class];
    ```
 
 ### 3. Builder with Direct and Interfaces
-   ```
-   Director class --> Builder A Interface --> Product A Interface;
-   Director class --> Builder B Interface --> Product B Interface;
-   Director class --> ... )
+   
+   ```mermaid
+    graph LR;
+    A[Director class]-->B[Builder A Interface]-->C[Product A Interface];
+    D[Director class]-->E[Builder B Interface]-->F[Product B Interface];
+    H[Director class]-->G[...]-->J[...];
    ```
 
 ## Semantical structure of pattern
