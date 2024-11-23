@@ -99,7 +99,7 @@ Schema 2.
 ## Builder With Director and Interfaces
 
 Schema 3.
-![Builder 3 UML schema](https://github.com/user-attachments/assets/a1edd3a8-01ae-4281-8b2c-1f8d1aa4d05f)
+![Builder 3 UML schema](https://github.com/user-attachments/assets/213fa20d-9ba9-4bd6-96df-1022544f0dee)
 
 ## Implementation Details
 
